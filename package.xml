@@ -30,7 +30,7 @@
       <user>neufeind</user>
       <name>Stefan Neufeind</name>
       <email>pear.neufeind@speedpartner.de</email>
-      <role>developer</role>
+      <role>lead</role>
     </maintainer>
     <maintainer>
       <user>timmyg</user>
@@ -52,16 +52,12 @@
     </maintainer>
   </maintainers>
   <release>
-    <version>0.4.0</version>
-    <date>2004-03-16</date>
+    <version>0.4.1</version>
+    <date>2004-03-17</date>
     <license>PHP</license>
     <state>alpha</state>
-    <notes>- pt_BR moved to ptBR required for multiple support(BC break)
-- Add CH validation (Switzerland)
-- added Euro banknotes IDs 
-- Improved UK postcodes validation
-- Fixed allowed_scheme options in Validate::uri() (Torsten Roehr)
-- Fixed optional arguments in Validate::number() (Torsten Roehr)</notes>
+    <notes>- fixed issue when validating IBANs via a static call
+- added missing test validate_UK.php to package.xml</notes>
     <deps>
       <dep type="php" rel="ge" version="4.1.0"/>
     </deps>
@@ -90,6 +86,7 @@
       <file role="test" name="tests/validate_CH.php"/>
       <file role="test" name="tests/validate_DE.php"/>
       <file role="test" name="tests/validate_NL.php"/>
+      <file role="test" name="tests/validate_UK.php"/>
       <file role="test" name="tests/validate_Finance.php"/>
       <file role="doc" name="docs/sample_multiple.php"/>
       <file role="data" install-as="AT_postcodes.txt" name="data/AT_postcodes.txt"/>
@@ -97,6 +94,19 @@
     </filelist>
   </release>
   <changelog>
+    <release>
+      <version>0.4.0</version>
+      <date>2004-03-16</date>
+      <state>alpha</state>
+      <notes>- pt_BR moved to ptBR required for multiple support(BC break)
+- Add CH validation (Switzerland)
+- added Euro banknotes IDs 
+- Improved UK postcodes validation
+- Fixed allowed_scheme options in Validate::uri() (Torsten Roehr)
+- Fixed optional arguments in Validate::number() (Torsten Roehr)
+        
+</notes>
+    </release>
     <release>
       <version>0.3.0</version>
       <date>2003-12-05</date>
