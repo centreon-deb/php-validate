@@ -17,7 +17,7 @@
 // |          Pierre-Alain Joye <pajoye@phpindex.com>                     |
 // +----------------------------------------------------------------------+
 //
-// $Id: Validate.php,v 1.29 2003/03/12 01:26:18 pajoye Exp $
+// $Id: Validate.php,v 1.30 2003/05/15 10:40:55 pajoye Exp $
 //
 // Methods for common data validations
 //
@@ -63,7 +63,7 @@ class Validate
         if ($decimal != '.') {
             $number = strtr($number, $decimal, '.');
         }
-        $number = (float)$number;
+        $number = (float)str_replace(' ', '', $number);
         if ($min !== null && $min > $number) {
             return false;
         }

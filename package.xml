@@ -37,16 +37,39 @@
     </maintainer>
   </maintainers>
   <release>
-    <version>0.1.1</version>
-    <date>2003-03-12</date>
+    <version>0.1.2</version>
+    <date>2003-05-15</date>
     <license>PHP</license>
     <state>alpha</state>
-    <notes>Validate::date(); argument parsing fixed</notes>
+    <notes>Validate::number(); '- 124' number format fixed</notes>
     <deps>
       <dep type="php" rel="ge" version="4.1.0"/>
     </deps>
+    <provides type="class" name="Validate" />
+    <provides type="function" name="Validate::number" />
+    <provides type="function" name="Validate::email" />
+    <provides type="function" name="Validate::string" />
+    <provides type="function" name="Validate::url" />
+    <provides type="function" name="Validate::creditCard" />
+    <provides type="function" name="Validate::date" />
+    <provides type="function" name="Validate::isbn" />
+    <provides type="function" name="Validate::multiple" />
+    <provides type="class" name="Validate_ES" />
+    <provides type="function" name="Validate_ES::dni" />
+    <provides type="class" name="Validate_US" />
+    <provides type="function" name="Validate_US::ssn" />
+    <provides type="function" name="Validate_US::ssnGroupRange" />
+    <provides type="function" name="Validate_US::ssnCheck" />
+    <provides type="function" name="Validate_US::ssnGetHighGroups" />
+    <provides type="class" name="Validate_FR" />
+    <provides type="function" name="Validate_FR::ssn" />
+    <provides type="function" name="Validate_FR::rib" />
+    <provides type="function" name="Validate_FR::siren" />
+    <provides type="function" name="Validate_FR::siret" />
+    <provides type="class" name="Validate_UK" />
+    <provides type="function" name="Validate_UK::postcode" />
     <filelist>
-      <file role="php" md5sum="9fefa318569afb36aea30f2fc7b27ece" name="Validate.php"/>
+      <file role="php" md5sum="5fa4bcf8a55e84d3e8c873f87374b4bf" name="Validate.php"/>
       <file role="php" md5sum="6d56b771769a5f29e046d5174ee03fc5" name="Validate/ES.php"/>
       <file role="php" md5sum="670ab98cc90db082a72690f809d5b52c" name="Validate/US.php"/>
       <file role="php" md5sum="0f136030b9bc7c970c2ae035ccc9b691" name="Validate/FR.php"/>
