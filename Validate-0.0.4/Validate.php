@@ -3,7 +3,7 @@
 // +----------------------------------------------------------------------+
 // | PHP Version 4                                                        |
 // +----------------------------------------------------------------------+
-// | Copyright (c) 1997-2002 The PHP Group                                |
+// | Copyright (c) 1997-2003 The PHP Group                                |
 // +----------------------------------------------------------------------+
 // | This source file is subject to version 2.02 of the PHP license,      |
 // | that is bundled with this package in the file LICENSE, and is        |
@@ -18,7 +18,7 @@
 // |                                                                      |
 // +----------------------------------------------------------------------+
 //
-// $Id: Validate.php,v 1.22 2002/08/18 19:08:05 pajoye Exp $
+// $Id: Validate.php,v 1.25 2003/02/16 17:46:41 pajoye Exp $
 //
 // Methods for common data validations
 //
@@ -42,8 +42,12 @@ define('VAL_STREET',       VAL_NAME . "/\\ºª");
 class Validate
 {
     /**
-    * @param mixed $decimal The decimal char or false when decimal not allowed
-    */
+     * Validate a number
+     *
+     * @param string    $number     Number to validate
+     * @param mixed     $decimal    The decimal char or false when decimal not allowed
+     * @param int       $dec_prec   Number of allowed decimals
+     */
     function number($number, $decimal = null, $dec_prec = null, $min = null, $max = null)
     {
         if (is_array($number)) {
@@ -67,6 +71,13 @@ class Validate
         return true;
     }
 
+
+    /**
+     * Validate a email
+     *
+     * @param string    $email          URL to validate
+     * @param boolean   $domain_check   Check or not if the domain exists
+     */
     function email($email, $check_domain = false)
     {
         if (is_array($email)) {
@@ -90,8 +101,13 @@ class Validate
     }
 
     /**
-    * @param string $format Ex: VAL_NUM . VAL_ALPHA
-    */
+     * Validate a string using the given format 'format'
+     *
+     * @param string    $string     String to validate
+     * @param string    $format     Ex: VAL_NUM . VAL_ALPHA (see constants)
+     * @param int       $min_lenght Minimum length of the string
+     * @param int       $max_lenght Maximum length of the string
+     */
     function string($string, $format = null, $min_lenght = 0, $max_lenght = 0)
     {
         if (is_array($string)) {
@@ -109,6 +125,12 @@ class Validate
         return true;
     }
 
+    /**
+     * Validate a URL
+     *
+     * @param string    $url            URL to validate
+     * @param boolean   $domain_check   Check or not if the domain exists
+     */
     function url($url, $domain_check = false)
     {
         if (is_array($url)) {
@@ -139,7 +161,15 @@ class Validate
      *      http://hysteria.sk/prielom/prielom-12.html#3 (Slovak language)
      *      http://www.speech.cs.cmu.edu/~sburke/pub/luhn_lib.html (Perl lib)
      *
-     * @param  string $number number
+     * Usage:
+     *  <?php
+     *	    require_once 'Validate.php';
+     *	    if (Validate::creditCard('credit_card_number')) {
+     *	        // Credit card number is OK
+     *	    }
+     *  ?>
+     *
+     * @param  string  $number number (only numeric chars will be considered)
      * @return bool           true if number is valid, otherwise false
      * @author Ondrej Jombik <nepto@pobox.sk>
      */
@@ -289,6 +319,61 @@ class Validate
             }
         }
         return true;
+    }
+
+    /**
+     * Validate a ISBN number
+     *
+     * This function checks given number according
+     * Usage:
+     *  <?php
+     *	    require_once 'Validate.php';
+     *	    if (Validate::ISBN($myisbn)) {
+     *	        // ISBN is OK
+     *	    }
+     *  ?>
+     *
+     * @param  string  $isbn number (only numeric chars will be considered)
+     * @return bool           true if number is valid, otherwise false
+     * @author Damein Seguy (dams@nexen.net>,
+     * added by Pierre-Alain Joye <paj@pearfr.org>
+     */
+    function ISBN($isbn)
+    {
+
+        if (preg_match("/[^0-9 IXSBN-]/", $isbn)) {
+            return false;
+        }
+
+        if (!ereg("^ISBN", $isbn)){
+            return false;
+        }
+
+        $isbn = ereg_replace("-", "", $isbn);
+        $isbn = ereg_replace(" ", "", $isbn);
+        $isbn = eregi_replace("ISBN", "", $isbn);
+        if (strlen($isbn) != 10) {
+            return false;
+        }
+        if (preg_match("/[^0-9]{9}[^0-9X]/", $isbn)){
+            return false;
+        }
+
+        $t = 0;
+        for($i=0; $i< strlen($isbn)-1; $i++){
+            $t += $isbn[$i]*(10-$i);
+        }
+        $f = $isbn[9];
+        if ($f == "X") {
+            $t += 10;
+        } else {
+            $t += $f;
+        }
+        if ($t % 11) {
+            return false;
+        } else {
+            return true;
+        }
     }
 
     function _substr(&$date, $num, $opt = false)

@@ -3,7 +3,7 @@
 // +----------------------------------------------------------------------+
 // | PHP Version 4                                                        |
 // +----------------------------------------------------------------------+
-// | Copyright (c) 1997-2002 The PHP Group                                |
+// | Copyright (c) 1997-2003 The PHP Group                                |
 // +----------------------------------------------------------------------+
 // | This source file is subject to version 2.02 of the PHP license,      |
 // | that is bundled with this package in the file LICENSE, and is        |
@@ -18,7 +18,7 @@
 // |                                                                      |
 // +----------------------------------------------------------------------+
 //
-// $Id: FR.php,v 1.2 2002/08/18 19:27:52 pajoye Exp $
+// $Id: FR.php,v 1.5 2003/02/16 17:30:01 pajoye Exp $
 //
 // Specific validation methods for data used in France
 //
@@ -112,6 +112,9 @@ class Validate_FR
      */
     function rib($aCodeBanque, $aCodeGuichet, $aNoCompte, $aKey)
     {
+        if(is_array($aCodeBanque)) {
+            extract($aCodeBanque);
+        }
         $chars         = array('/[AJ]/','/[BKZ]/','/[CLT]/','/[DMU]/','/[ENV]/','/[FOW]/','/[GPX]/','/[HQY]/','/[IRZ]/');
         $values        = array('1','2','3','4','5','6','7','8','9');
 
@@ -143,6 +146,88 @@ class Validate_FR
             $key = 97;
         }
         return $key==$aKey;
+    }
+
+
+    /**
+     * Validate a french SIREN number
+     *
+     *
+     * @param  string $siren  number or an array containaing the 'number'=>1234
+     * @return bool           true if number is valid, otherwise false
+     * @author Damien Seguy, added by Pierre-Alain Joye <paj@pearfr.org>
+     */
+    function siren($siren)
+    {
+        if( is_array($siren) ) {
+            extract( $number );
+        }
+        $siren = str_replace(' ', '', $siren);
+        if (!preg_match("/^(\d)(\d)(\d)(\d)(\d)(\d)(\d)(\d)(\d)$/",
+            $siren,	$match)) {
+            return false;
+        } else {
+        $match[2] *= 2;
+        $match[4] *= 2;
+        $match[6] *= 2;
+        $match[8] *= 2;
+        $somme = 0;
+
+        for ($i = 1; $i<count($match); $i++) {
+            if ($match[$i] > 9) {
+                $a = (int)substr($match[$i], 0, 1);
+                $b = (int)substr($match[$i], 1, 1);
+                $match[$i] = $a + $b;
+            }
+            $somme += $match[$i];
+        }
+        return (($somme % 10) == 0);
+    }
+
+    /**
+     * Validate a french SIRET number
+     *
+     *
+     * @param  string $siret  number or an array containaing the 'number'=>1234
+     * @return bool           true if number is valid, otherwise false
+     * @author Damien Seguy, added by Pierre-Alain Joye <paj@pearfr.org>
+     */
+    function siret($siret)
+    {
+        $siret = str_replace(' ', '', $siret);
+        if (
+            !preg_match(
+                "/^(\d)(\d)(\d)(\d)(\d)(\d)(\d)(\d)(\d)(\d)(\d)(\d)(\d)(\d)$/",
+                $siret,	$match
+            )
+        ) {
+            return false;
+        } else {
+            if( !Validate_FR::siren(implode('', array_slice($match, 1,9))) ) {
+                return false;
+            }
+        }
+        $match[1] *= 2;
+        $match[3] *= 2;
+        $match[5] *= 2;
+        $match[7] *= 2;
+        $match[9] *= 2;
+        $match[11] *= 2;
+        $match[13] *= 2;
+
+        $somme = 0;
+
+        for ($i = 1; $i<count($match); $i++) {
+            if ($match[$i] > 9) {
+                $a = (int)substr($match[$i], 0, 1);
+                $b = (int)substr($match[$i], 1, 1);
+                $match[$i] = $a + $b;
+            }
+            $somme += $match[$i];
+        }
+
+        return ( ($somme % 10) == 0 )
+
     }
 }
 ?>

@@ -3,7 +3,7 @@
 // +----------------------------------------------------------------------+
 // | PHP Version 4                                                        |
 // +----------------------------------------------------------------------+
-// | Copyright (c) 1997-2002 The PHP Group                                |
+// | Copyright (c) 1997-2003 The PHP Group                                |
 // +----------------------------------------------------------------------+
 // | This source file is subject to version 2.02 of the PHP license,      |
 // | that is bundled with this package in the file LICENSE, and is        |
@@ -17,7 +17,7 @@
 // |                                                                      |
 // +----------------------------------------------------------------------+
 //
-// $Id: ES.php,v 1.2 2002/06/09 14:26:35 cox Exp $
+// $Id: ES.php,v 1.5 2003/02/16 17:28:29 pajoye Exp $
 //
 // Specific validation methods for data used in Spain
 //
@@ -34,6 +34,9 @@ class Validate_ES
     */
     function dni($dni)
     {
+        if(is_array($dni)){
+            extract($dni);
+        }
         $letra  = substr($dni, -1);
         $number = substr($dni, 0, -1);
         if (!Validate::string($number, VAL_NUM, 8, 8)) {

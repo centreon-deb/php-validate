@@ -3,7 +3,7 @@
 // +----------------------------------------------------------------------+
 // | PHP Version 4                                                        |
 // +----------------------------------------------------------------------+
-// | Copyright (c) 1997-2002 The PHP Group                                |
+// | Copyright (c) 1997-2003 The PHP Group                                |
 // +----------------------------------------------------------------------+
 // | This source file is subject to version 2.02 of the PHP license,      |
 // | that is bundled with this package in the file LICENSE, and is        |
@@ -17,7 +17,7 @@
 // |          Tim Gallagher <timg@sunflowerroad.com>                      |
 // +----------------------------------------------------------------------+
 //
-// $Id: US.php,v 1.5 2002/06/19 16:32:56 busterb Exp $
+// $Id: US.php,v 1.8 2003/02/16 17:29:40 pajoye Exp $
 //
 // Specific validation methods for data used in the United States
 //
@@ -35,6 +35,9 @@ class Validate_US
      */
     function ssn($ssn, $high_groups = null)
     {
+        if(is_array($ssn)){
+            extract($ssn);
+        }
         // remove any dashes, spaces, returns, tabs or slashes
         $ssn = str_replace(array('-','/',' ',"\t","\n"), '', $ssn);
 
@@ -65,6 +68,9 @@ class Validate_US
     */
     function ssnGroupRange($groupNumber)
     {
+        if(is_array($groupNumber)){
+            extract($groupNumber);
+        }
         if ($groupNumber < 10) {
             // is the number odd?
             if ($groupNumber % 2) {
@@ -94,6 +100,9 @@ class Validate_US
      */
     function ssnCheck($area, $group, $serial, &$high_groups)
     {
+        if(is_array($area)){
+            extract($area);
+        }
         // perform trivial checks
         // no field should contain all zeros
         if (!($area && $group && $serial)) {

@@ -8,7 +8,8 @@
 * string (predifined type alpha upper and/or lowercase, numeric,...)
 * date (min, max)
 * Credit cards
-* possibility valid multiple data with a single method call (::multiple)</description>
+* possibility valid multiple data with a single method call (::multiple)
+* Locale validation, i.e. DBI for spain, ssn for FR,US, more to come</description>
   <maintainers>
     <maintainer>
       <user>cox</user>
@@ -36,21 +37,27 @@
     </maintainer>
   </maintainers>
   <release>
-    <version>0.0.3</version>
-    <date>2002-08-18</date>
+    <version>0.0.4</version>
+    <date>2003-02-16</date>
     <license>PHP</license>
     <state>alpha</state>
-    <notes>Initial package release</notes>
+    <notes>- Fix a string bug using 'format' argumenent (pierre)
+- Add isbn check
+- Add UK postalcode check (dams@php.net)
+- Add siret/siren to FR (dams@php.net)
+- Add rib to FR (pierre)
+- Update all functions to be callable from the multiple method (pierre)</notes>
     <deps>
-      <dep type="php" rel="ge" version="4.1.0+"/>
+      <dep type="php" rel="ge" version="4.1.0"/>
     </deps>
     <filelist>
-      <file role="php" md5sum="8aac14d90b2760f23eae50e2f8542aed" name="Validate.php"/>
-      <file role="php" md5sum="34c2f47222cd87cb2d89b835762a1480" name="Validate/ES.php"/>
-      <file role="php" md5sum="f5633b0f4a64f1012dda9596fe740462" name="Validate/US.php"/>
-      <file role="php" md5sum="f47e9dc429b6d8fb30f9ed76e724dd9b" name="Validate/FR.php"/>
-      <file role="test" md5sum="3d4523728dab917fccd5f3185d7099f7" name="tests/number.php"/>
-      <file role="test" md5sum="48c6031f04646ad8b54d3af96376a218" name="tests/date.php"/>
+      <file role="php" md5sum="7548f316dab62dfa6b36b81637de7faf" name="Validate.php"/>
+      <file role="php" md5sum="27538f85b720f0c2ecebc7ba900bda2a" name="Validate/ES.php"/>
+      <file role="php" md5sum="69f8e49abf45a2bc398fd550d7df78d6" name="Validate/US.php"/>
+      <file role="php" md5sum="fee70b65755d9765f4df947a75135c7c" name="Validate/FR.php"/>
+      <file role="test" md5sum="ec2ad57b39df119fa64f362d46bfe71f" name="tests/number.php"/>
+      <file role="test" md5sum="70cf2c8ddd49e0226d26bf2f320f05c2" name="tests/date.php"/>
+      <file role="test" md5sum="4907aa3fce084d8b87d99b8f20cce6a1" name="tests/credit_card.php"/>
     </filelist>
   </release>
 </package>
