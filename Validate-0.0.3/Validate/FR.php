@@ -18,11 +18,11 @@
 // |                                                                      |
 // +----------------------------------------------------------------------+
 //
-// $Id: FR.php,v 1.1 2002/08/18 19:09:07 pajoye Exp $
+// $Id: FR.php,v 1.2 2002/08/18 19:27:52 pajoye Exp $
 //
 // Specific validation methods for data used in France
 //
-require_once "Validate/Validate.php";
+require_once "Validate.php";
 
 define('VALIDATE_FR_SSN_MODULUS', 97);
 

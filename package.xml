@@ -36,7 +36,7 @@
     </maintainer>
   </maintainers>
   <release>
-    <version>0.0.2</version>
+    <version>0.0.3</version>
     <date>2002-08-18</date>
     <license>PHP</license>
     <state>alpha</state>
@@ -48,7 +48,7 @@
       <file role="php" md5sum="8aac14d90b2760f23eae50e2f8542aed" name="Validate.php"/>
       <file role="php" md5sum="34c2f47222cd87cb2d89b835762a1480" name="Validate/ES.php"/>
       <file role="php" md5sum="f5633b0f4a64f1012dda9596fe740462" name="Validate/US.php"/>
-      <file role="php" md5sum="41cee975255305340fe525d0592dfc68" name="Validate/FR.php"/>
+      <file role="php" md5sum="f47e9dc429b6d8fb30f9ed76e724dd9b" name="Validate/FR.php"/>
       <file role="test" md5sum="3d4523728dab917fccd5f3185d7099f7" name="tests/number.php"/>
       <file role="test" md5sum="48c6031f04646ad8b54d3af96376a218" name="tests/date.php"/>
     </filelist>
