@@ -1,4 +1,5 @@
 <?php
+/* vim: set expandtab tabstop=4 shiftwidth=4: */
 // +----------------------------------------------------------------------+
 // | PHP Version 4                                                        |
 // +----------------------------------------------------------------------+
@@ -15,7 +16,7 @@
 // | Copyright (c) 2003 Michael Wallner <mike@iworks.at>                  |
 // +----------------------------------------------------------------------+
 //
-// $Id: AT.php,v 1.4 2003/12/10 16:22:56 mike Exp $
+// $Id: AT.php,v 1.6 2004/02/03 23:34:53 neufeind Exp $
 
 /**
 * Requires Validate
@@ -29,31 +30,34 @@ require_once('Validate.php');
 * @package      Validate
 * @category     PHP
 *
-* @version      $Revision: 1.4 $
+* @version      $Revision: 1.6 $
 * @access       public
 */
 class Validate_AT
 {
     /**
-    * Validate postcode
-    *
-    * "Postleitzahl"
+    * Validate postcode ("Postleitzahl")
     *
     * @static
     * @access   public
-    * @return   bool
-    * @param    int     $zip
+    * @param    string  postcode to validate
+    * @param    bool    optional; strong checks (e.g. against a list of postcodes)
+    * @return   bool    true if postcode is ok, false otherwise
     */
-    function postcode($zip)
+    function postcode($postcode, $strong=false)
     {
-        static $postcodes;
-
-        if (!isset($postcodes)) {
-            $file = '@DATADIR@/Validate/AT_postcodes.txt';
-            $postcodes = array_map('trim', file($file));
+        if ($strong) {
+            static $postcodes;
+    
+            if (!isset($postcodes)) {
+                $file = '@DATADIR@/Validate/AT_postcodes.txt';
+                $postcodes = array_map('trim', file($file));
+            }
+    
+            return in_array((int) $postcode, $postcodes);
+        } else {
+            return (ereg('^[0-9]{4}$', $postcode));
         }
-
-        return in_array((int) $zip, $postcodes);
     }
 
     /**
@@ -63,8 +67,8 @@ class Validate_AT
     *
     * @static
     * @access   public
-    * @return   bool
     * @param    string  $svn
+    * @return   bool
     */
     function ssn($svn)
     {

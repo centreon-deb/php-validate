@@ -16,7 +16,7 @@
 // | Authors: Silvano Girardi Jr. <silvano@php.net>                       |
 // +----------------------------------------------------------------------+
 //
-// $Id: ptBR.php,v 1.1 2003/12/10 15:12:11 pajoye Exp $
+// $Id: ptBR.php,v 1.2 2004/02/03 23:34:53 neufeind Exp $
 // Specific validation methods for data used in pt_BR
 //
 
@@ -33,6 +33,22 @@ class Validate_ptBR
     function cep($cep)
     {
         return (ereg('(^[0-9]{5})-([0-9]{3})$', $cep));
+    }
+
+    /**
+     * validates a postcode; alias-function
+     *
+     * @access    public
+     * @param     string  the postcode to be validated
+     * @param     bool    optional; strong checks (e.g. against a list of postcodes)
+     * @return    bool
+     */
+    function postcode($postcode, $strong=false)
+    {
+        // $strong is not used here at the moment; added for API compatibility
+        // checks might be added at a later stage
+        
+        return cep($postcode);
     }
 
     /**

@@ -16,7 +16,7 @@
 // | Authors: Dave Mertens <zyprexia@php.net>                             |
 // +----------------------------------------------------------------------+
 //
-// $Id: NL.php,v 1.6 2003/12/10 15:07:34 pajoye Exp $
+// $Id: NL.php,v 1.7 2004/02/03 23:34:53 neufeind Exp $
 //
 // Specific validation methods for data used in NL
 //
@@ -33,14 +33,16 @@ class Validate_NL
      * Validate a NL postcode
      *
      * @param   string  $postcode       NL postcode to validate
+     * @param   bool    optional; strong checks (e.g. against a list of postcodes)
      * @return  bool    true if postcode is ok, false otherwise
      */
-    function postcode($postcode)
+    function postcode($postcode, $strong=false)
     {
+        // $strong is not used here at the moment; added for API compatibility
+        // checks might be added at a later stage
+
         return (ereg('^[0-9]{4}\ {0,1}[A-Za-z]{2}$', $postcode)); // '1234 AB', '1234AB', '1234 ab'
     }
-
-
 
     /**
      * Validate a phonenumber
@@ -87,9 +89,9 @@ class Validate_NL
      * @param   string  $number     Dutch social security number
      * @return  bool    true if SSN number is correct
      */
-    function SSN($number)
+    function ssn($ssn)
     {
-        return (ereg("^[0-9]{9}$", $number));
+        return (ereg("^[0-9]{9}$", $ssn));
     }
 
     /**

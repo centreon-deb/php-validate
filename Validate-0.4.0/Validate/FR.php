@@ -16,7 +16,7 @@
 // | Authors: Pierre-Alain Joye <paj@pearfr.org>                          |
 // +----------------------------------------------------------------------+
 //
-// $Id: FR.php,v 1.9 2003/12/10 15:07:34 pajoye Exp $
+// $Id: FR.php,v 1.10 2004/03/16 22:42:58 pajoye Exp $
 //
 // Specific validation methods for data used in France
 
@@ -89,13 +89,6 @@ class Validate_FR
     /**
      * Validate a french RIB
      *
-     * TO DO :
-     * strong validation against the INSEE cities databases (rpc or local DB)
-     *
-     * This function checks given number according the specs
-     * available here:
-     *      http://www.dads.cnav.fr/tds/Stru0103.htm
-     *
      * @param  string $aCodeBanque number or an array containaing the 'number'=>1234
      * @param  string $aCodeGuichet number or an array containaing the 'number'=>1234
      * @param  string $aNoCompte number or an array containaing the 'number'=>1234
@@ -117,7 +110,6 @@ class Validate_FR
         $codebank    = preg_replace('/[^0-9]/', '', $codebanque);
         $officecode  = preg_replace('/[^0-9]/', '', $codeguichet);
         $account     = preg_replace($chars, $values, $nocompte);
-
 
         if (strlen($codebank) != 5){
             return false;

@@ -17,7 +17,7 @@
 // |          Pierre-Alain Joye <paj@pearfr.org>                          |
 // +----------------------------------------------------------------------+
 //
-// $Id: Validate.php,v 1.38 2003/12/11 10:36:22 pajoye Exp $
+// $Id: Validate.php,v 1.40 2003/12/22 14:24:43 pajoye Exp $
 //
 // Methods for common data validations
 //
@@ -47,7 +47,7 @@ class Validate
      *                              'min'       minimun value
      *                              'max'       maximum value
      */
-    function number($number, $options)
+    function number($number, $options=array())
     {
         $decimal=$dec_prec=$min=$max= null;
         if(is_array($options)){
@@ -145,7 +145,7 @@ class Validate
     function uri($url, $options = null)
     {
         $domain_check = false;
-        $allowed_protocols = null;
+        $allowed_schemes = null;
         if (is_array($options)) {
             extract($options);
         }
