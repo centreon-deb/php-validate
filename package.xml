@@ -37,24 +37,16 @@
     </maintainer>
   </maintainers>
   <release>
-    <version>0.1.0</version>
-    <date>2003-02-18</date>
+    <version>0.1.1</version>
+    <date>2003-03-12</date>
     <license>PHP</license>
     <state>alpha</state>
-    <notes>***WARNING*** Interface has changed  ***
-- Fix the sources itself, the last release was broken
-- Set a maximum of 2 arguments, one for the value itself
-  and one for the options, if more are needed, an array is used.
-- Fix a weird behavior while using include inside a 'if',
-  never use an include|_once inside a 'if' (pierre)
-- Update all functions to be callable from the multiple method (pierre)
-- Fix a little bug in fr::rib
-- Add an usage sample in docs for the multiple method</notes>
+    <notes>Validate::date(); argument parsing fixed</notes>
     <deps>
       <dep type="php" rel="ge" version="4.1.0"/>
     </deps>
     <filelist>
-      <file role="php" md5sum="6113b1f8e28b9cc699fa63a50f1d4e18" name="Validate.php"/>
+      <file role="php" md5sum="9fefa318569afb36aea30f2fc7b27ece" name="Validate.php"/>
       <file role="php" md5sum="6d56b771769a5f29e046d5174ee03fc5" name="Validate/ES.php"/>
       <file role="php" md5sum="670ab98cc90db082a72690f809d5b52c" name="Validate/US.php"/>
       <file role="php" md5sum="0f136030b9bc7c970c2ae035ccc9b691" name="Validate/FR.php"/>

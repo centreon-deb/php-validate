@@ -17,7 +17,7 @@
 // |          Pierre-Alain Joye <pajoye@phpindex.com>                     |
 // +----------------------------------------------------------------------+
 //
-// $Id: Validate.php,v 1.28 2003/02/17 15:19:14 pajoye Exp $
+// $Id: Validate.php,v 1.29 2003/03/12 01:26:18 pajoye Exp $
 //
 // Methods for common data validations
 //
@@ -203,6 +203,11 @@ class Validate
      */
     function date($date, $options)
     {
+        $max = $min = false;
+        $format = '';
+        if (is_array($options)){
+            extract($options);
+        }
         $date_len   = strlen($format);
         for ($i = 0; $i < strlen($format); $i++) {
             $c = $format{$i};
