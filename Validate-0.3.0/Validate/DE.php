@@ -5,35 +5,33 @@
 // +----------------------------------------------------------------------+
 // | Copyright (c) 1997-2003 The PHP Group                                |
 // +----------------------------------------------------------------------+
-// | This source file is subject to version 2.02 of the PHP license,      |
+// | This source file is subject to version 3.0 of the PHP license,       |
 // | that is bundled with this package in the file LICENSE, and is        |
-// | available at through the world-wide-web at                           |
-// | http://www.php.net/license/2_02.txt.                                 |
+// | available through the world-wide-web at the following url:           |
+// | http://www.php.net/license/3_0.txt.                                  |
 // | If you did not receive a copy of the PHP license and are unable to   |
 // | obtain it through the world-wide-web, please send a note to          |
 // | license@php.net so we can mail you a copy immediately.               |
 // +----------------------------------------------------------------------+
-// | Authors: Pierre-Alain Joye <paj@pearfr.org>                          |
+// | Author: Stefan Neufeind <pear.neufeind@speedpartner.de>              |
 // +----------------------------------------------------------------------+
 //
-// $Id: UK.php,v 1.5 2003/02/17 11:03:22 mansion Exp $
-//
-// Specific validation methods for data used in UK
+// Specific validation methods for data used in DE
 //
 
 require_once('Validate.php');
 
-class Validate_UK
+class Validate_DE
 {
     /**
-     * Validate a UK postcode
+     * Validate a DE postcode
      *
-     * @param   string  $postcode       UK postcode to validate
+     * @param   string  $postcode       DE postcode to validate
      * @return  bool    true if postcode is ok, false otherwise
      */
     function postcode($postcode)
     {
-        return (ereg('^[A-Z]{1, 2}[0-9]{1, 2}[A-Z]{0, 1} [0-9][A-Z]{2}$', $postcode));
+        return (ereg('^[0-9]{5}$', $postcode));
     }
 }
 ?>
