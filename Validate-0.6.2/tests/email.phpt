@@ -2,7 +2,7 @@
 email.phpt: Unit tests for
 --FILE--
 <?php
-// $Id: email.phpt,v 1.3 2005/09/13 15:24:05 toggg Exp $
+// $Id: email.phpt,v 1.6 2005/11/04 16:58:59 toggg Exp $
 // Validate test script
 $noYes = array('NO', 'YES');
 require 'Validate.php';
@@ -11,7 +11,7 @@ echo "Test Validate_Email\n";
 
 $emails = array(
         // Try dns lookup
-        array('example@example.org', true), // OK
+        array('pear-general@lists.php.net', true), // OK
         array('example@fluffffffrefrffrfrfrfrfrfr.is', true), // NOK
         array('example@fluffffffrefrffrfrfrfrfrfr.is', false), // OK
         // with out the dns lookup
@@ -65,9 +65,27 @@ $emails = array(
         'ha"ho@example.com', // NOK
         '<ha la la>blah</ha>@example.com', // NOK
         '<hablahha>@example.com', // NOK
-        '"<ha la la>blah</ha>"@example.com', // NOK
+        '"<ha la la>blah</ha>"@example.com', // OK
         '" "@example.com', // NOK
-        '@example.com' // NOK
+        '@example.com', // NOK
+
+        // Minus ' tests (#5804)
+        'minus@example-minus.com', // OK
+        'minus@example.co-m', // OK
+        'mi-nus@example-minus.co-m', // OK
+        'minus@example-.com', // NOK
+        'minus@-example.com', // NOK
+        'minus@-.com', // NOK
+        'minus@example.-com', // NOK
+        'minus@-example.com-', // NOK
+
+        // IP domain
+        'ip@127.0.0.1', // OK
+        '"the ip"@[127.0.0.1]', // OK
+        'ip@127.0.333.1', // NOK
+        'ip@[277.0.0.1]', // NOK
+        'ip@[127.0.0.1', // NOK
+        'ip@127.0.0.1]' // NOK
     );
 
 foreach ($emails as $email) {
@@ -82,7 +100,7 @@ foreach ($emails as $email) {
 ?>
 --EXPECT--
 Test Validate_Email
-example@example.org: with domain check : YES
+pear-general@lists.php.net: with domain check : YES
 example@fluffffffrefrffrfrfrfrfrfr.is: with domain check : NO
 example@fluffffffrefrffrfrfrfrfrfr.is: without domain check : YES
 example@fluffffffrefrffrfrfrfrfrfr.is: YES
@@ -116,5 +134,19 @@ ha"ho@example.com: NO
 <ha la la>blah</ha>@example.com: NO
 <hablahha>@example.com: NO
 "<ha la la>blah</ha>"@example.com: YES
-" "@example.com: YES
+" "@example.com: NO
 @example.com: NO
+minus@example-minus.com: YES
+minus@example.co-m: YES
+mi-nus@example-minus.co-m: YES
+minus@example-.com: NO
+minus@-example.com: NO
+minus@-.com: NO
+minus@example.-com: NO
+minus@-example.com-: NO
+ip@127.0.0.1: YES
+"the ip"@[127.0.0.1]: YES
+ip@127.0.333.1: NO
+ip@[277.0.0.1]: NO
+ip@[127.0.0.1: NO
+ip@127.0.0.1]: NO

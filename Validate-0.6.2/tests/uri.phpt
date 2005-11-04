@@ -2,7 +2,7 @@
 uri.phpt: Unit tests for Validate::uri()
 --FILE--
 <?php
-// $Id: uri.phpt,v 1.3 2005/08/31 08:25:15 toggg Exp $
+// $Id: uri.phpt,v 1.6 2005/11/04 16:58:59 toggg Exp $
 // Validate test script
 $noYes = array('NO', 'YES');
 require 'Validate.php';
@@ -19,13 +19,21 @@ $uris = array(
         'http://user:password@127.0.0.1:8080/pub/ietf/uri;rfc2396?test=ok&end=next#Related' , // OK
         '127.0.0.1', // NOK
         '/tkik-wkik_rss.php?ver=2http://www.hyperlecture.info//http://www.hyperlecture.info/accueil', // NOK
+        // minus serie
+        '//example-minus.com', // OK
+        '//example.co-m', // OK
+        '//example-.com', // NOK
+        '//-example.com', // NOK
+        '//-.com', // NOK
+        '//example.-com', // NOK
+        '//-example.com-', // NOK
         // Try dns lookup
-        array('//example.org', 'domain_check' => true), // OK
+        array('//php.net', 'domain_check' => true), // OK
         array('//example.gor', 'domain_check' => true), // NOK
         // Try schemes lookup
         array('//example.org', 'allowed_schemes' => array('ftp', 'http')), // NOK
         array('http://example.org', 'allowed_schemes' => array('ftp', 'http')), // OK
-        array('http://example.org', 'allowed_schemes' => array('ftp', 'http'),
+        array('http://php.net', 'allowed_schemes' => array('ftp', 'http'),
                                     'domain_check' => true), // OK
         array(
         '/tkik-wkik_rss.php?ver=2http://www.hyperlecture.info//http://www.hyperlecture.info/accueil',
@@ -59,9 +67,16 @@ http://user:password@www.ics.uci.edu:8080/pub/ietf/uri;rfc2396?test=ok&end=next#
 http://user:password@127.0.0.1:8080/pub/ietf/uri;rfc2396?test=ok&end=next#Related: YES
 127.0.0.1: NO
 /tkik-wkik_rss.php?ver=2http://www.hyperlecture.info//http://www.hyperlecture.info/accueil: NO
-//example.org: schemes() with domain check : YES
+//example-minus.com: YES
+//example.co-m: YES
+//example-.com: NO
+//-example.com: NO
+//-.com: NO
+//example.-com: NO
+//-example.com-: NO
+//php.net: schemes() with domain check : YES
 //example.gor: schemes() with domain check : NO
 //example.org: schemes(ftp,http) without domain check : NO
 http://example.org: schemes(ftp,http) without domain check : YES
-http://example.org: schemes(ftp,http) with domain check : YES
+http://php.net: schemes(ftp,http) with domain check : YES
 /tkik-wkik_rss.php?ver=2http://www.hyperlecture.info//http://www.hyperlecture.info/accueil: schemes() without domain check : (strict : ) YES
