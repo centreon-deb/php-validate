@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE package SYSTEM "http://pear.php.net/dtd/package-1.0">
-<package version="1.0" packagerversion="1.4.2">
+<package version="1.0" packagerversion="1.4.9">
  <name>Validate</name>
  <summary>Validation class</summary>
  <description>Package to validate various datas. It includes :
  - numbers (min/max, decimal or not)
- - email (syntax, domain check)
+ - email (syntax, domain check, rfc822)
  - string (predifined type alpha upper and/or lowercase, numeric,...)
  - date (min, max)
  - uri (RFC2396)
@@ -44,17 +44,25 @@
   </maintainer>
   </maintainers>
  <release>
-  <version>0.6.2</version>
-  <date>2005-11-04</date>
+  <version>0.6.3</version>
+  <date>2006-04-20</date>
   <license>New BSD</license>
   <state>beta</state>
-  <notes>- Change licence to the new BSD License
-  (see http://www.opensource.org/licenses/bsd-license.php)
-- The path part in uri cannot contain two slash characters.
-- Refactored email() regexp, hardened hostname check (taken from uri()) (bug #5804)
-- Empty quoted email recipient is not valid, must at least contain a non blank char
-- Use &amp; as delimiter as £ is problematic if the script is saved utf8
-- Enhanced uri.phpt and email.phpt tests
+  <notes>- email():
+ * #6930, accepts options as an array to confirm to the Validate standard
+   previous boolean $check_domain still accepted for backwards compatibility
+ * #7176, introduces an experimental option &quot;use_rfc822&quot;
+   which switch to a full RFC822 new checker
+ * unit test enhanced and completed
+- class_exists call in mulitple() now passes false to the autoload param
+- uri():
+ * #6181, Accept URI terminating with a /
+ * use !empty() instead of isset()
+ * minus in the top domain as http://example.co-m is invalid
+ * Double slashes are accepted in the path part (requested by bjori)
+   As a consequence, only URIs with full authority can be valid, no relative URI
+ * documentation header completed : usage notes , options and &quot;strict&quot; parameter
+ * unit tests completed and updated , use php.net instead of unavailable example.org
   </notes>
   <deps>
    <dep type="php" rel="ge" version="4.2.0"/>
@@ -62,19 +70,37 @@
   </deps>
   <provides type="class" name="Validate" />
   <provides type="function" name="Validate::number" />
+  <provides type="function" name="Validate::email" />
+  <provides type="function" name="Validate::string" />
+  <provides type="function" name="Validate::uri" />
+  <provides type="function" name="Validate::date" />
+  <provides type="function" name="Validate::multiple" />
   <filelist>
    <file role="doc" md5sum="f8790e48b597dff12a643e08e9be3fab" name="LICENSE"/>
-   <file role="php" md5sum="d784c3c3906bd12209185c23a9b20324" name="Validate.php"/>
+   <file role="php" md5sum="fbee0e616013eb9aca9a1ca3fa61c52a" name="Validate.php"/>
    <file role="test" md5sum="b64938d8cc8986cc38289d9d6164e2fc" name="tests/number.phpt"/>
    <file role="test" md5sum="593f38ce2f272ec6a4bb7675d950749f" name="tests/testdate.phpt"/>
    <file role="test" md5sum="338ae690f17ee220f6b2015e69de55e6" name="tests/email.phpt"/>
    <file role="test" md5sum="ee9b364f81d90e4a72027563e707116c" name="tests/multiple.phpt"/>
    <file role="test" md5sum="f7d10063f82361d99bc246b97c8ff270" name="tests/multicard.phpt"/>
-   <file role="test" md5sum="30b1f9578cd438b570de6829349bd323" name="tests/uri.phpt"/>
+   <file role="test" md5sum="ee96c3a96ec4032d2c09cdb0aac96df4" name="tests/uri.phpt"/>
    <file role="doc" md5sum="16476cc19b07247ff048683427d1e4ff" name="docs/sample_multiple.php"/>
   </filelist>
  </release>
  <changelog>
+   <release>
+    <version>0.6.2</version>
+    <date>2005-11-04</date>
+    <state>beta</state>
+    <notes>- Change licence to the new BSD License
+  (see http://www.opensource.org/licenses/bsd-license.php)
+- The path part in uri cannot contain two slash characters.
+- Refactored email() regexp, hardened hostname check (taken from uri()) (bug #5804)
+- Empty quoted email recipient is not valid, must at least contain a non blank char
+- Use &amp; as delimiter as £ is problematic if the script is saved utf8
+- Enhanced uri.phpt and email.phpt tests
+    </notes>
+   </release>
    <release>
     <version>0.6.1</version>
     <date>2005-09-13</date>
