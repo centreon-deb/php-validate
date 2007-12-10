@@ -2,7 +2,7 @@
 email.phpt: Unit tests for
 --FILE--
 <?php
-// $Id: email.phpt,v 1.6 2005/11/04 16:58:59 toggg Exp $
+// $Id: email.phpt,v 1.12 2007/12/11 04:31:43 davidc Exp $
 // Validate test script
 $noYes = array('NO', 'YES');
 require 'Validate.php';
@@ -12,13 +12,17 @@ echo "Test Validate_Email\n";
 $emails = array(
         // Try dns lookup
         array('pear-general@lists.php.net', true), // OK
-        array('example@fluffffffrefrffrfrfrfrfrfr.is', true), // NOK
         array('example@fluffffffrefrffrfrfrfrfrfr.is', false), // OK
         // with out the dns lookup
         'example@fluffffffrefrffrfrfrfrfrfr.is', // OK
 
+        array('davidc@php.net', array('fullTLDValidation' => VALIDATE_GTLD_EMAILS)),
+        array('example (though bad)@example.com', array('use_rfc822' => true)), // OK
+        'bugme@not./com', // OK
+
         // Some none english chars, those should fail until we fix the IDN stuff
         'hæjjæ@homms.com', // NOK
+        'þæöð@example.com', // NOK
         'postmaster@tüv.de', // NOK
 
         // Test for various ways with _
@@ -90,10 +94,13 @@ $emails = array(
 
 foreach ($emails as $email) {
     if (is_array($email)) {
-    echo "{$email[0]}: with". ($email[1] ? '' : 'out') . ' domain check : '.
-        $noYes[Validate::email($email[0], $email[1])]."\n";
+        echo "{$email[0]}:";
+        if (!is_array($email[1])) {
+            echo " with". ($email[1] ? '' : 'out') . ' domain check :';
+        }
+        echo ' ' . $noYes[Validate::email($email[0], $email[1])]."\n";
     } else {
-    echo "{$email}: ".
+        echo "{$email}: ".
         $noYes[Validate::email($email)]."\n";
     }
 }
@@ -101,10 +108,13 @@ foreach ($emails as $email) {
 --EXPECT--
 Test Validate_Email
 pear-general@lists.php.net: with domain check : YES
-example@fluffffffrefrffrfrfrfrfrfr.is: with domain check : NO
 example@fluffffffrefrffrfrfrfrfrfr.is: without domain check : YES
 example@fluffffffrefrffrfrfrfrfrfr.is: YES
+davidc@php.net: YES
+example (though bad)@example.com: YES
+bugme@not./com: YES
 hæjjæ@homms.com: NO
+þæöð@example.com: NO
 postmaster@tüv.de: NO
 mark_@example.com: YES
 _mark@example.com: YES
