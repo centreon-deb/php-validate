@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="1.7.2" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0                         http://pear.php.net/dtd/tasks-1.0.xsd                         http://pear.php.net/dtd/package-2.0                         http://pear.php.net/dtd/package-2.0.xsd">
+<package packagerversion="1.9.0" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0                         http://pear.php.net/dtd/tasks-1.0.xsd                         http://pear.php.net/dtd/package-2.0                         http://pear.php.net/dtd/package-2.0.xsd">
  <name>Validate</name>
  <channel>pear.php.net</channel>
  <summary>Validation class</summary>
@@ -52,10 +52,10 @@
   <email>pear.neufeind@speedpartner.de</email>
   <active>no</active>
  </developer>
- <date>2009-01-31</date>
- <time>18:52:52</time>
+ <date>2009-11-24</date>
+ <time>06:16:21</time>
  <version>
-  <release>0.8.2</release>
+  <release>0.8.3</release>
   <api>0.7.0</api>
  </version>
  <stability>
@@ -63,28 +63,25 @@
   <api>beta</api>
  </stability>
  <license>New BSD</license>
- <notes>* Bug #12658: New lines at end of file create output (davidc)
-* Bug #11001     RFC822 Comments break PCRE (davidc)
-* Bug #14075     Validate::uri() rejects valid tag: URIs (davidc)
-* Bug #14866     Notice: Undefined index: VALIDATE_ITLD_EMAILS (amir)
-* Bug #14931     Warning: max(): Array must contain atleast one element (doconnor)
-* Doc Bug #14180     Typo in $modulo variable description (amir)
-* Doc Bug #14046     Docs desperately needed (amir)
-* Request #956     Validate::email() doesn&apos;t allow Internationalized Domain Names (IDN) (davidc)
-* Request #14791     Improve PHPCS Results [amir]
-* Removed Net_IDNA Dependency [davidc]</notes>
+ <notes>
+* Bug #14865   Fixing some unit test failures (amir)
+* Bug #15945   Improper string used to check domain dns (amir)
+* Bug #16381   String format validation fails for VALIDATE_NAME.VALIDATE_XXX (amir)
+* Bug #16427   Email Validation not working for check_domain (amir)
+* Bug #16811   Should determine whether Net/IDNA.php is available less &quot;destructively&quot; (kguest)
+ </notes>
  <contents>
   <dir name="/">
-   <file md5sum="4aa72b1f100e4a0422c9e5469a4c4a83" name="docs/Example_Locale.php" role="doc" />
+   <file md5sum="980cd13ee74b34e30c518f877ed03c5c" name="docs/Example_Locale.php" role="doc" />
    <file md5sum="16476cc19b07247ff048683427d1e4ff" name="docs/sample_multiple.php" role="doc" />
-   <file md5sum="887e42ca17a7394e81da76eb7a6b5500" name="tests/email.phpt" role="test" />
-   <file md5sum="f7d10063f82361d99bc246b97c8ff270" name="tests/multicard.phpt" role="test" />
-   <file md5sum="9c186b77589a49c84fad1a2d6414eaf5" name="tests/multiple.phpt" role="test" />
-   <file md5sum="b64938d8cc8986cc38289d9d6164e2fc" name="tests/number.phpt" role="test" />
-   <file md5sum="901020364e5273638081f72121c9ad2d" name="tests/testdate.phpt" role="test" />
-   <file md5sum="ee96c3a96ec4032d2c09cdb0aac96df4" name="tests/uri.phpt" role="test" />
+   <file md5sum="708b93dc5e886ad24659d369b0e37774" name="tests/email.phpt" role="test" />
+   <file md5sum="cf8996b7907ec50324effadec1bbae3c" name="tests/multicard.phpt" role="test" />
+   <file md5sum="e296b32a00f909bfbb4ffc1ec483396b" name="tests/multiple.phpt" role="test" />
+   <file md5sum="1c7f996303ba665961aed645127e7886" name="tests/number.phpt" role="test" />
+   <file md5sum="b600917e25b9c052efaba9659bf01d4b" name="tests/testdate.phpt" role="test" />
+   <file md5sum="0499ff097b6913432bc421f864996dd7" name="tests/uri.phpt" role="test" />
    <file md5sum="f8790e48b597dff12a643e08e9be3fab" name="LICENSE" role="doc" />
-   <file md5sum="bccdfaedfbe218c1bceebbf7214e78f2" name="Validate.php" role="php" />
+   <file md5sum="a043adbbdfe61bd09cb4265850310a93" name="Validate.php" role="php" />
   </dir>
  </contents>
  <dependencies>
@@ -112,6 +109,29 @@
  <changelog>
   <release>
    <version>
+    <release>0.8.2</release>
+    <api>0.7.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license>New BSD</license>
+   <notes>
+* Bug #12658: New lines at end of file create output (davidc)
+* Bug #11001     RFC822 Comments break PCRE (davidc)
+* Bug #14075     Validate::uri() rejects valid tag: URIs (davidc)
+* Bug #14866     Notice: Undefined index: VALIDATE_ITLD_EMAILS (amir)
+* Bug #14931     Warning: max(): Array must contain atleast one element (doconnor)
+* Doc Bug #14180     Typo in $modulo variable description (amir)
+* Doc Bug #14046     Docs desperately needed (amir)
+* Request #956     Validate::email() doesn&apos;t allow Internationalized Domain Names (IDN) (davidc)
+* Request #14791     Improve PHPCS Results [amir]
+* Removed Net_IDNA Dependency [davidc]
+   </notes>
+  </release>
+  <release>
+   <version>
     <release>0.8.1</release>
     <api>0.7.0</api>
    </version>
@@ -121,7 +141,8 @@
    </stability>
    <date>2007-12-10</date>
    <license>New BSD</license>
-   <notes>* Fix Bug #2662: Invalid email addresses are validated [dufuz]
+   <notes>
+* Fix Bug #2662: Invalid email addresses are validated [dufuz]
 * Fix Bug #2936: Typo in sample_multiple.php [dufuz]
 * Fix Bug #4068: errant &quot;return true;&quot; in Validate_US::phoneNumber [dufuz]
 * Fix Bug #5390: XML Package Error [dufuz]
@@ -145,7 +166,8 @@
 * Fix Bug #12452: EALPHA_LOWER is missing a Ã� [thesaur]
 * Implement Feature #11244: documentation [davidc]
 * Implement Feature #8073: a@a is valid email [amir]
-* Removed dependency on Net_IDNA [davidc]</notes>
+* Removed dependency on Net_IDNA [davidc]
+   </notes>
   </release>
   <release>
    <version>
@@ -158,10 +180,12 @@
    </stability>
    <date>2006-11-17</date>
    <license>New BSD</license>
-   <notes>- string():
+   <notes>
+- string():
  * New chars in VALIDATE_EALPHA_LOWER and UPPER
 - date():
- * RFC822 date-time format compliant</notes>
+ * RFC822 date-time format compliant
+   </notes>
   </release>
   <release>
    <version>
@@ -174,13 +198,15 @@
    </stability>
    <date>2006-10-05</date>
    <license>New BSD</license>
-   <notes>- __stringToUtf7():
+   <notes>
+- __stringToUtf7():
  * #8442, Preventing a Notice
 - email():
  * #8629, hostnames starting with numbers are valid because of their popularity
  * #8853, E-Mail validation allows space before TLD.
 - date():
- * #8851, date-validation allows letters in time.</notes>
+ * #8851, date-validation allows letters in time.
+   </notes>
   </release>
   <release>
    <version>
@@ -193,14 +219,16 @@
    </stability>
    <date>2006-07-31</date>
    <license>New BSD</license>
-   <notes>- string():
+   <notes>
+- string():
  * #7648, Adding a new character to VALIDATE_EALPHA
 - email():
  * #8073, a@a is a valid email address just in RFC restricted mode
 - email():
  * #7531, utf-7 encoding
 - __stringToUtf7():
- * new method added to do care about utf-7</notes>
+ * new method added to do care about utf-7
+   </notes>
   </release>
   <release>
    <version>
@@ -213,7 +241,8 @@
    </stability>
    <date>2006-04-20</date>
    <license>New BSD</license>
-   <notes>- email():
+   <notes>
+- email():
  * #6930, accepts options as an array to confirm to the Validate standard
    previous boolean $check_domain still accepted for backwards compatibility
  * #7176, introduces an experimental option &quot;use_rfc822&quot;
@@ -227,7 +256,8 @@
  * Double slashes are accepted in the path part (requested by bjori)
    As a consequence, only URIs with full authority can be valid, no relative URI
  * documentation header completed : usage notes , options and &quot;strict&quot; parameter
- * unit tests completed and updated , use php.net instead of unavailable example.org</notes>
+ * unit tests completed and updated , use php.net instead of unavailable example.org
+   </notes>
   </release>
   <release>
    <version>
@@ -240,13 +270,15 @@
    </stability>
    <date>2005-11-04</date>
    <license>New BSD</license>
-   <notes>- Change licence to the new BSD License
+   <notes>
+- Change licence to the new BSD License
   (see http://www.opensource.org/licenses/bsd-license.php)
 - The path part in uri cannot contain two slash characters.
 - Refactored email() regexp, hardened hostname check (taken from uri()) (bug #5804)
 - Empty quoted email recipient is not valid, must at least contain a non blank char
 - Use &amp; as delimiter as Ã�Â£ is problematic if the script is saved utf8
-- Enhanced uri.phpt and email.phpt tests</notes>
+- Enhanced uri.phpt and email.phpt tests
+   </notes>
   </release>
   <release>
    <version>
@@ -259,8 +291,10 @@
    </stability>
    <date>2005-09-13</date>
    <license>New BSD</license>
-   <notes>- Bug #5390 XML Package Error
-- uri was enchanced to fully comply with RFC2396 (Bertrand) (forgotten in last release changelog)</notes>
+   <notes>
+- Bug #5390 XML Package Error
+- uri was enchanced to fully comply with RFC2396 (Bertrand) (forgotten in last release changelog)
+   </notes>
   </release>
   <release>
    <version>
@@ -273,9 +307,11 @@
    </stability>
    <date>2005-09-13</date>
    <license>New BSD</license>
-   <notes>- Move to Beta state
+   <notes>
+- Move to Beta state
 - Enhance again email validation and unit test it
-- modulus methods fix if bcmath is not present</notes>
+- modulus methods fix if bcmath is not present
+   </notes>
   </release>
   <release>
    <version>
@@ -288,7 +324,8 @@
    </stability>
    <date>2005-05-20</date>
    <license>New BSD</license>
-   <notes>- Bug #2936, typo
+   <notes>
+- Bug #2936, typo
 - Bug #2879, Issn wrong validation
 - Better email validation
 - Request #997 validate:date minium and maximum accept Date objects (By Torsten Roehr)
@@ -314,7 +351,8 @@
  * EAN14
  * UCC12
  * SSCC
-- splited multiple() test in with (skipif not installed) or without card,</notes>
+- splited multiple() test in with (skipif not installed) or without card,
+   </notes>
   </release>
   <release>
    <version>
@@ -327,8 +365,10 @@
    </stability>
    <date>2004-03-17</date>
    <license>New BSD</license>
-   <notes>- fixed issue when validating IBANs via a static call
-- added missing test validate_UK.php to package.xml</notes>
+   <notes>
+- fixed issue when validating IBANs via a static call
+- added missing test validate_UK.php to package.xml
+   </notes>
   </release>
   <release>
    <version>
@@ -341,12 +381,14 @@
    </stability>
    <date>2004-03-16</date>
    <license>New BSD</license>
-   <notes>- pt_BR moved to ptBR required for multiple support(BC break)
+   <notes>
+- pt_BR moved to ptBR required for multiple support(BC break)
 - Add CH validation (Switzerland)
 - added Euro banknotes IDs
 - Improved UK postcodes validation
 - Fixed allowed_scheme options in Validate::uri() (Torsten Roehr)
-- Fixed optional arguments in Validate::number() (Torsten Roehr)</notes>
+- Fixed optional arguments in Validate::number() (Torsten Roehr)
+   </notes>
   </release>
   <release>
    <version>
@@ -359,7 +401,8 @@
    </stability>
    <date>2003-12-05</date>
    <license>New BSD</license>
-   <notes>- Added Finance Validations for Financial related datas
+   <notes>
+- Added Finance Validations for Financial related datas
   (S. Neufeind, Piotr Klaban)
 - Add polish validation (Piotr Klaban)
 - Add German validation (Stefan Neufeind)
@@ -368,7 +411,8 @@
   and Music Number(ISMN) (Piotr Klaban, David Grant)
 - Drop Validate::url() in preferenc of Validate::uri() which is fully
   RFC2396 compliant
-- Move to PHP 3.0 license</notes>
+- Move to PHP 3.0 license
+   </notes>
   </release>
   <release>
    <version>
@@ -381,7 +425,9 @@
    </stability>
    <date>2003-06-15</date>
    <license>New BSD</license>
-   <notes>- Add some dutch validations</notes>
+   <notes>
+- Add some dutch validations
+   </notes>
   </release>
   <release>
    <version>
@@ -394,7 +440,9 @@
    </stability>
    <date>2003-03-12</date>
    <license>New BSD</license>
-   <notes>- Validate::date(); argument parsing fixed</notes>
+   <notes>
+- Validate::date(); argument parsing fixed
+   </notes>
   </release>
  </changelog>
 </package>

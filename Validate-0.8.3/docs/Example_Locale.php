@@ -23,7 +23,7 @@
  * @author     [Your Name] <example@example.org>
  * @copyright  1997-2005 [Your name]
  * @license    http://www.opensource.org/licenses/bsd-license.php  New BSD License
- * @version    CVS: $Id: Example_Locale.php,v 1.1 2005/11/26 10:51:30 dufuz Exp $
+ * @version    CVS: $Id: Example_Locale.php 275351 2009-02-08 13:06:00Z clockwerx $
  * @link       http://pear.php.net/package/Validate_[LocaleName]
  */
 
@@ -43,7 +43,7 @@
  * @version    Release: @package_version@
  * @link       http://pear.php.net/package/Validate_[LocaleName]
  */
-class Validate_[LocaleName]
+class Validate_LocaleName
 {
     /**
      * validates a postcode

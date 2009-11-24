@@ -2,7 +2,7 @@
 uri.phpt: Unit tests for Validate::uri()
 --FILE--
 <?php
-// $Id: uri.phpt,v 1.10 2005/12/09 14:59:04 toggg Exp $
+// $Id: uri.phpt 202483 2005-12-09 14:59:04Z toggg $
 // Validate test script
 $noYes = array('NO', 'YES');
 require 'Validate.php';

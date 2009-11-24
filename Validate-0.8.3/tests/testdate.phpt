@@ -2,7 +2,7 @@
 testdate.phpt: Unit tests for 'Validate.php'
 --FILE--
 <?php
-// $Id: testdate.phpt,v 1.3 2007/06/01 07:44:55 amir Exp $
+// $Id: testdate.phpt 236794 2007-06-01 07:44:55Z amir $
 require_once 'Validate.php';
 
 // Validate test script

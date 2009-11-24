@@ -2,7 +2,7 @@
 email.phpt: Unit tests for
 --FILE--
 <?php
-// $Id: email.phpt,v 1.13 2008/12/29 09:14:12 amir Exp $
+// $Id: email.phpt 276490 2009-02-26 09:32:16Z amir $
 // Validate test script
 $noYes = array('NO', 'YES');
 require 'Validate.php';
@@ -92,6 +92,7 @@ $emails = array(
         'ip@127.0.0.1]' // NOK
     );
 
+list($version) = explode(".", phpversion(), 2);
 foreach ($emails as $email) {
     if (is_array($email)) {
         echo "{$email[0]}:";
@@ -100,8 +101,16 @@ foreach ($emails as $email) {
         }
         echo ' ' . $noYes[Validate::email($email[0], $email[1])]."\n";
     } else {
-        echo "{$email}: ".
-        $noYes[Validate::email($email)]."\n";
+        echo "{$email}: ";
+        if ((int)$version > 4) {
+            try {
+                echo $noYes[Validate::email($email)]."\n";
+            } catch (Exception $e) {
+                echo $e->getMessage()."\n";
+            }
+        } else {
+            echo $noYes[Validate::email($email)]."\n";
+        }
     }
 }
 ?>
