@@ -1,8 +1,8 @@
 --TEST--
-email.phpt: Unit tests for
+email.phpt: Unit tests for email validation
 --FILE--
 <?php
-// $Id: email.phpt 276490 2009-02-26 09:32:16Z amir $
+// $Id$
 // Validate test script
 $noYes = array('NO', 'YES');
 require 'Validate.php';
@@ -10,9 +10,6 @@ require 'Validate.php';
 echo "Test Validate_Email\n";
 
 $emails = array(
-        // Try dns lookup
-        array('pear-general@lists.php.net', true), // OK
-        array('example@fluffffffrefrffrfrfrfrfrfr.is', false), // OK
         // with out the dns lookup
         'example@fluffffffrefrffrfrfrfrfrfr.is', // OK
 
@@ -116,8 +113,6 @@ foreach ($emails as $email) {
 ?>
 --EXPECT--
 Test Validate_Email
-pear-general@lists.php.net: with domain check : YES
-example@fluffffffrefrffrfrfrfrfrfr.is: without domain check : YES
 example@fluffffffrefrffrfrfrfrfrfr.is: YES
 davidc@php.net: YES
 example (though bad)@example.com: YES

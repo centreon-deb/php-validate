@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<package packagerversion="1.9.1" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
+<package packagerversion="1.9.4" version="2.0" xmlns="http://pear.php.net/dtd/package-2.0" xmlns:tasks="http://pear.php.net/dtd/tasks-1.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://pear.php.net/dtd/tasks-1.0 http://pear.php.net/dtd/tasks-1.0.xsd http://pear.php.net/dtd/package-2.0 http://pear.php.net/dtd/package-2.0.xsd">
  <name>Validate</name>
  <channel>pear.php.net</channel>
  <summary>Validation class</summary>
@@ -52,10 +52,10 @@
   <email>pear.neufeind@speedpartner.de</email>
   <active>no</active>
  </developer>
- <date>2010-10-11</date>
- <time>00:12:09</time>
+ <date>2011-12-18</date>
+ <time>11:04:54</time>
  <version>
-  <release>0.8.4</release>
+  <release>0.8.5</release>
   <api>0.7.0</api>
  </version>
  <stability>
@@ -64,23 +64,27 @@
  </stability>
  <license>New BSD</license>
  <notes>
-QA release
-Bug #17555 Use correct pattern delim
-Bug #17755 Encoding to UTF-8 in Validate.php
-Bug #17756 Avoiding ereg
+QA Release
+Request #17963: Allow test suite to run without DNS resolver [patch by remicollet, adjustments by dufuz]
+Bug #17279 Validate::email() with &apos;fullTLDValidation&apos; =&gt; &apos;true&apos; always return false.
+Bug #17947 testdate test fails if date.timezone not set
+Bug #17948 multicard test fails
  </notes>
  <contents>
   <dir name="/">
-   <file md5sum="980cd13ee74b34e30c518f877ed03c5c" name="docs/Example_Locale.php" role="doc" />
+   <file md5sum="f2b7fee9b1724fc1ab8835a9550a59b8" name="docs/Example_Locale.php" role="doc" />
    <file md5sum="16476cc19b07247ff048683427d1e4ff" name="docs/sample_multiple.php" role="doc" />
-   <file md5sum="708b93dc5e886ad24659d369b0e37774" name="tests/email.phpt" role="test" />
-   <file md5sum="cf8996b7907ec50324effadec1bbae3c" name="tests/multicard.phpt" role="test" />
-   <file md5sum="e296b32a00f909bfbb4ffc1ec483396b" name="tests/multiple.phpt" role="test" />
-   <file md5sum="1c7f996303ba665961aed645127e7886" name="tests/number.phpt" role="test" />
-   <file md5sum="b600917e25b9c052efaba9659bf01d4b" name="tests/testdate.phpt" role="test" />
-   <file md5sum="0499ff097b6913432bc421f864996dd7" name="tests/uri.phpt" role="test" />
+   <file md5sum="ac3e200fe57fb7853097fb8e4ae4f966" name="tests/email.phpt" role="test" />
+   <file md5sum="d897a07e9d7866cc519e6bc78c577c8c" name="tests/email_domaincheck.phpt" role="test" />
+   <file md5sum="e56ae0d4f4b71da4cd572dc7b5a48c48" name="tests/multicard.phpt" role="test" />
+   <file md5sum="1227b418317fc263f357b3c43323d0b8" name="tests/multiple.phpt" role="test" />
+   <file md5sum="e54a44025bdf8f402702d0a24cc4da8f" name="tests/number.phpt" role="test" />
+   <file md5sum="5441a4415711934fe8b4226028e3da94" name="tests/testdate.phpt" role="test" />
+   <file md5sum="ce5515cc95fe15ca307315b01c104c4a" name="tests/testdate_minmax.phpt" role="test" />
+   <file md5sum="06275d447e19769a2a21b526bed9b6e2" name="tests/uri.phpt" role="test" />
+   <file md5sum="64f7ee953466f6407ca6277fdff654d5" name="tests/uri_domaincheck.phpt" role="test" />
    <file md5sum="f8790e48b597dff12a643e08e9be3fab" name="LICENSE" role="doc" />
-   <file md5sum="169d6497891a1a8e7c891b9809c0d2d9" name="Validate.php" role="php" />
+   <file md5sum="44e9b2b449a523c77c3aa5b4dcf906b7" name="Validate.php" role="php" />
   </dir>
  </contents>
  <dependencies>
@@ -106,6 +110,46 @@ Bug #17756 Avoiding ereg
  </dependencies>
  <phprelease />
  <changelog>
+  <release>
+   <date>2010-10-10</date>
+   <time>06:13:30</time>
+   <version>
+    <release>0.8.4</release>
+    <api>0.7.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license>New BSD</license>
+   <notes>
+QA release
+Bug #17555 Use correct pattern delim
+Bug #17755 Encoding to UTF-8 in Validate.php
+Bug #17756 Avoiding ereg
+   </notes>
+  </release>
+  <release>
+   <date>2009-11-24</date>
+   <time>06:13:30</time>
+   <version>
+    <release>0.8.3</release>
+    <api>0.7.0</api>
+   </version>
+   <stability>
+    <release>beta</release>
+    <api>beta</api>
+   </stability>
+   <license>New BSD</license>
+   <notes>
+- * Bug #14865   Fixing some unit test failures (amir)
+- * Bug #15945   Improper string used to check domain dns (amir)
+- * Bug #16381   String format validation fails for VALIDATE_NAME.VALIDATE_XXX (amir)
+- * Bug #16427   Email Validation not working for check_domain (amir)
+- * Bug #16811   Should determine whether Net/IDNA.php is available less &quot;destructively&quot; (kguest)
+-
+   </notes>
+  </release>
   <release>
    <version>
     <release>0.8.2</release>

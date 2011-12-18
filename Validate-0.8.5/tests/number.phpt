@@ -2,7 +2,7 @@
 number.phpt: Unit tests for 'Validate.php'
 --FILE--
 <?php
-// $Id: number.phpt 185969 2005-05-07 15:23:21Z toggg $
+// $Id$
 require_once 'Validate.php';
 // Validate test script
 $noYes = array('NO', 'YES');

@@ -32,7 +32,7 @@
  * @author     Amir Mohammad Saied <amir@php.net>
  * @copyright  1997-2006 Pierre-Alain Joye,Tomas V.V.Cox,Amir Mohammad Saied
  * @license    http://www.opensource.org/licenses/bsd-license.php  New BSD License
- * @version    CVS: $Id: Validate.php 302518 2010-08-20 01:58:15Z clockwerx $
+ * @version    CVS: $Id$
  * @link       http://pear.php.net/package/Validate
  */
 
@@ -448,6 +448,10 @@ class Validate
         if(!empty($options["VALIDATE_ITLD_EMAILS"])) array_push($validate, 'itld');
         if(!empty($options["VALIDATE_GTLD_EMAILS"])) array_push($validate, 'gtld');
         if(!empty($options["VALIDATE_CCTLD_EMAILS"])) array_push($validate, 'cctld');
+
+        if (count($validate) === 0) {
+            array_push($validate, 'itld', 'gtld', 'cctld');
+        }
 
         $self = new Validate;
 
@@ -1093,7 +1097,9 @@ class Validate
                 $class        = implode('_', $validateType);
                 $classPath    = str_replace('_', DIRECTORY_SEPARATOR, $class);
                 $class        = 'Validate_' . $class;
-                if (!Validate::_includePathFileExists("Validate/$classPath.php")) {
+                if (Validate::_includePathFileExists("Validate/$classPath.php")) {
+                    include_once "Validate/$classPath.php";
+                } else {
                     trigger_error("$class isn't installed or you may have some permission issues", E_USER_ERROR);
                 }
 

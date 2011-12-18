@@ -1,15 +1,8 @@
 --TEST--
-multicard.phpt: Unit tests for 'Validate.php' : mutltiple() with credit card
-This test needs Validate_Finance_CreditCard installed to be enabled
---SKIPIF--
-<?php
-// $Id: multicard.phpt 185969 2005-05-07 15:23:21Z toggg $
-if (!@include_once 'Validate/Finance/CreditCard.php') {
-    echo ('skip Test skipped as Validate_Finance_CreditCard not installed');
-}
-?>
+multiple.phpt: Unit tests for 'Validate.php' without extension (credit card)
 --FILE--
 <?php
+// $Id$
 // Validate test script
 $noYes = array('NO', 'YES');
 
@@ -20,8 +13,8 @@ $types = array(
     'myemail1'   => array('type' => 'email'),
     'no'         => array('type' => 'number', array('min' => -8, 'max' => -7)),
     'teststring' => array('type' => 'string', array('format' => VALIDATE_ALPHA)),
-    'date'       => array('type' => 'date',   array('format' => '%d%m%Y')),
-    'cc_no'      => array('type' => 'Finance_CreditCard_number')
+    'test10844'  => array('type' => 'string', 'format' => '0-9'),
+    'date'       => array('type' => 'date',   array('format' => '%d%m%Y'))
 );
 
 $data  = array(
@@ -30,8 +23,8 @@ $data  = array(
     'myemail1' => 'webmaster.@google.com', // NOK
     'no' => '-8', // OK
     'teststring' => 'PEARrocks', // OK
-    'date' => '12121996', // OK
-    'cc_no' => '6762 1955 1506 1813' // OK
+    'test10844' => 'dsfasdf', // NOK
+    'date' => '12121996' // OK
     )
 );
 
@@ -54,7 +47,7 @@ myemail: webmaster@google.com =>YES
 myemail1: webmaster.@google.com =>NO
 no: -8 =>YES
 teststring: PEARrocks =>YES
+test10844: dsfasdf =>NO
 date: 12121996 =>YES
-cc_no: 6762 1955 1506 1813 =>YES
 *****************************************
 

@@ -23,7 +23,7 @@
  * @author     [Your Name] <example@example.org>
  * @copyright  1997-2005 [Your name]
  * @license    http://www.opensource.org/licenses/bsd-license.php  New BSD License
- * @version    CVS: $Id: Example_Locale.php 275351 2009-02-08 13:06:00Z clockwerx $
+ * @version    CVS: $Id$
  * @link       http://pear.php.net/package/Validate_[LocaleName]
  */
 
