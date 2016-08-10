@@ -1,0 +1,25 @@
+Format: http://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
+Upstream-Name: Validate
+Source: http://pear.php.net/package/Validate
+
+Files: debian/*
+Copyright: 2016, Sébastien Gross <seb-ppa@chezwam.org>
+License: GPL
+
+Files: *
+Copyright:
+    2003-2011 Pierre-Alain Joye <pierre.php@gmail.com>
+    2003-2011 Thomas V.V.Cox <cox@php.net>
+    2003-2011 Helgi Þormar Þorbjörnsson <dufuz@php.net>
+    2003-2011 Amir Mohammad Saied <email>amirsaied@gmail.com>
+    2003-2011 David Coallier <david@echolibre.com>
+    2003-2011 bertrand Gugger <email>bertrand@toggg.com>
+    2003-2011 Stefan Neufeind <pear.neufeind@speedpartner.de>
+
+License: New BSD
+
+On Debian systems, the complete text of the GNU General
+Public License can be found in `/usr/share/common-licenses/GPL'.
+
+The Debian packaging is (C) 2016, Sébastien Gross <seb-ppa@chezwam.org>
+and is licensed under the GPL, see above.

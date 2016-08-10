@@ -1,0 +1,6 @@
+php-validate (0.8.5-1) trusty; urgency=low
+
+  * Initial release.
+
+ -- Sébastien Gross <seb-ppa@chezwam.org>  Wed, 10 Aug 2016 14:03:35 +0000
+
